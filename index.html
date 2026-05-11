@@ -35,7 +35,15 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
 <script>
-const firebaseConfig={apiKey:"YOUR_API_KEY",authDomain:"YOUR_PROJECT_ID.firebaseapp.com",projectId:"YOUR_PROJECT_ID",storageBucket:"YOUR_PROJECT_ID.appspot.com",messagingSenderId:"YOUR_MESSAGING_SENDER_ID",appId:"YOUR_APP_ID"};
+const firebaseConfig= {
+  apiKey: "AIzaSyApLQOyP6xNYkmBIGKSqjYozCpefREcSl4",
+  authDomain: "my-finance-system-cloud.firebaseapp.com",
+  projectId: "my-finance-system-cloud",
+  storageBucket: "my-finance-system-cloud.firebasestorage.app",
+  messagingSenderId: "876196172129",
+  appId: "1:876196172129:web:1e9d9578f535737c18f520",
+  measurementId: "G-2H36MFGFDC"
+}
 const LOCAL_KEY='financeSmartSyncV1';const PRE_SYNC_BACKUP_KEY='financePreSmartSyncBackup';const OLD_KEYS=['financeSystemFirebaseV1','financeSystemV13','financeSystemV12','financeSystemV11'];const TABLES=['records','budgets','transfers','accounts','envelopes','investments'];const PAGE_SIZE=50;let searchPage=1,allPage=1,activePeriod='today',editingId=null,editAccountId=null,editInvestmentId=null,fullEditId=null;let fbReady=false,fbUser=null,cloudTimer=null,isMerging=false;
 const defaults={options:{types:['支出','收入','資金轉移','儲值','分期消費','分期付款','退款','調整'],categories:['餐飲','日用品','交通','娛樂','醫療','保險','學習','工作','投資','薪資','其他'],statuses:['一般收支','公司核銷待回收','朋友代墊待回收','借出待回收','已回收','資金轉移','分期付款'],tools:['信用卡','現金','銀行帳戶','電子支付','電子票證','其他'],methods:['LINE Pay','Apple Pay','悠遊卡','街口支付','現金','信用卡實體卡','銀行轉帳'],accounts:['A帳戶','B帳戶','中信信用卡','台新帳戶','現金','悠遊卡餘額'],ledgers:['經常帳','資本帳'],accountTypes:['銀行帳戶','信用卡','現金','電子支付','電子票證','投資帳戶','其他'],investmentTypes:['股票','基金','ETF','定存','加密貨幣','其他']},records:[],budgets:[],transfers:[],accounts:[],envelopes:[],investments:[],meta:{updatedAt:''}};
 let state=load();function $(id){return document.getElementById(id)}function val(id){return ($(id)?.value||'').trim()}function num(id){return Number($(id)?.value||0)}function nowIso(){return new Date().toISOString()}function today(){return new Date().toISOString().slice(0,10)}function thisMonth(){return new Date().toISOString().slice(0,7)}function thisYear(){return new Date().getFullYear().toString()}function ym(d){return (d||'').slice(0,7)}function money(n){return Number(n||0).toLocaleString('zh-TW',{maximumFractionDigits:0})}function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
